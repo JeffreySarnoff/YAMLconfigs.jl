@@ -7,7 +7,7 @@ makedocs(
     modules = [YAMLconfigs],
     format = Documenter.HTML(
         prettyurls = get(ENV, "CI", nothing) == "true",
-        canonical = "https://your-username.github.io/YAMLconfigs.jl",
+        canonical = "https://jeffreysarnoff.io/YAMLconfigs.jl",
     ),
     pages = [
         "Home" => "index.md",
@@ -19,7 +19,7 @@ makedocs(
 )
 
 # Uncomment for GitHub Pages deployment
-# deploydocs(
-#     repo = "github.com/your-username/YAMLconfigs.jl.git",
-#     devbranch = "main",
-# )
+deploydocs(
+     repo = "github.com/JeffreySarnoff/YAMLconfigs.jl.git",
+     devbranch = "main",
+)
