@@ -1,0 +1,6 @@
+StandardOperations: "../ConfigFiles/StandardOperations.yaml"
+Configurations: "../ConfigFiles/Configurations.yaml"
+Profiles: "../ConfigFiles/Profiles.yaml"
+Constraints: "../ConfigFiles/Constraints.yaml"
+Kappas: "../ConfigFiles/Kappas.yaml"
+
