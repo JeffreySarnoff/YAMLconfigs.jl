@@ -44,7 +44,7 @@ configs = load_yaml_configs(["config1.yaml", "config2.yaml"])
 ```
 """
 function load_yaml_configs(filepaths::Vector{<:AbstractString})
-    configs = []
+    configs = Vector{Any}()
     for filepath in filepaths
         try
             config = load_yaml_config(filepath)
