@@ -59,11 +59,11 @@ ExpFast: # two approximations, signature dependent
       - "Round{ρ} in {ToOdd, StochasticA}"
       - "Sat{ρ} in {SatPropagate}"
     Kappa:
-      - intervals: "[-1, 1]"
+      - intervals: '[-1, 1]'
         kappa: 0
-      - intervals: ["[-10, -1)", "(1, 12]"]
+      - intervals: [ '[-10, -1)', '(1, 12]' ]
         kappa: 1
-      - intervals: ["(-Inf, -10)", "(12, Inf)"]
+      - intervals: [ '(-Inf, -10)', '(12, Inf)' ]
         kappa: 2
     Verification:
       method: "statistical"
@@ -78,11 +78,11 @@ ExpFast: # two approximations, signature dependent
           bits: "16"
       - "Sat{ρ} in {SatPropagate}"
     Kappa:
-      - intervals: "[-1, 1]"
+      - intervals: '[-1, 1]'
         kappa: 0
-      - intervals: ["[-11, -1)", "(1, 13]"]
+      - intervals: [ '[-11, -1)', '(1, 13]' ]
         kappa: 2
-      - intervals: ["(-Inf, -11)", "(13, Inf)"]
+      - intervals: [ '(-Inf, -11)', '(13, Inf)' ]
         kappa: 3
     Verification:
       method: "statistical"
