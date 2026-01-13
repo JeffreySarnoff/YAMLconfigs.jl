@@ -19,4 +19,8 @@ open_interval:   "( '(0, 1)' )"  # Open interval
 clopen_interval: "( '[0, 1)' )"  # Closed on left, open on right
 ```
 
-#
+Multiple, disjoint intervals may be given as an expression list:
+
+```yaml
+"([ '[-Inf, -π)', '(π, Inf]' ])"
+```
