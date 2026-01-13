@@ -14,6 +14,7 @@ makedocs(
         "API Reference" => "api.md",
         "P3109 Concepts" => "p3109.md",
         "Configuration Files" => "configfiles.md",
+        "YAML References and Tools" => "yaml.md",
         "Contributing" => "contributing.md",
     ],
 )
