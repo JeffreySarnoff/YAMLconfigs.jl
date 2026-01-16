@@ -1,9 +1,44 @@
 module YAMLconfigs
 
-using YAML
+using YAML, PythonCall
 
-export load_yaml_config, load_yaml_configs, process_yaml_configs
+export yaml_read, load_yaml_config, load_yaml_configs, process_yaml_configs
 
+function yaml_read(filepath::AbstractString; reader=YAML.load_file)
+    if !isfile(filepath)
+        throw(FileNotFoundError(filepath))
+    end
+    try
+        return reader(filepath)
+    catch e
+        throw(ParseError(filepath, e.msg))
+    end
+end
+
+function pyyaml_read(filepath::AbstractString; reader=YAML.load_file)
+    if !isfile(filepath)
+        throw(FileNotFoundError(filepath))
+    end
+    # from ruamel.yaml import YAML
+    pyimport("ruamel")
+    try
+        return reader(filepath)
+    catch e
+        throw(ParseError(filepath, e.msg))
+    end
+end
+
+julia> re = pyimport("re")
+Python: <module 're' from '[...]/lib/re.py'>
+
+julia> words = re.findall("[a-zA-Z]+", "PythonCall.jl is very useful!")
+Python: ['PythonCall', 'jl', 'is', 'very', 'useful']
+
+julia> sentence = Py(" ").join(words)
+Python: 'PythonCall jl is very useful'
+
+julia> pyconvert(String, sentence)
+"PythonCall jl is very useful"
 """
     load_yaml_config(filepath::AbstractString)
 

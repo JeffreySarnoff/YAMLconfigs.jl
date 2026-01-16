@@ -1,0 +1,13 @@
+JSON_ConfigFiles = Dict(
+    :StandardOperations => "../ConfigFiles/JSON/StandardOperations.json",
+    :Configurations => "../ConfigFiles/JSON/Configurations.json",
+    :Profiles => "../ConfigFiles/JSON/Profiles.json",
+    :Constraints => "../ConfigFiles/JSON/Constraints.json",
+    :Kappas => "../ConfigFiles/JSON/Kappas.json"
+)
+StandardOperations_json: "../ConfigFiles/JSON/StandardOperations.json"
+Configurations_json: "../ConfigFiles/JSON/Configurations.json"
+Profiles_json: "../ConfigFiles/JSON/Profiles.json"
+Constraints_json: "../ConfigFiles/JSON/Constraints.json"
+Kappas_json: "../ConfigFiles/JSON/Kappas.json"
+

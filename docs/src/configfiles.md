@@ -101,8 +101,8 @@ SqrtFast:
     - intervals: "([-Inf, Inf])"
       kappa: 1
   Projections:
-    RoundingModes: ["NearestTiesToAway", "AllDirected"]
-    SaturationModes: "All"
+    RoundingModes: ["NearestTiesToAway", "Toward"]
+    SaturationModes: "(∀)"
 ```
 
 ## Usage Examples

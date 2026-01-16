@@ -12,7 +12,7 @@ Classification:
   predicates: ["IsZero", "IsOne", "IsNan", "IsSignMinus", "IsFinite",
     "IsInfinite", "IsNormal", "IsSubnormal"]
   identification:
-  - Class
+    - Class
 
 Comparison:
   compare: ["CompareLess", "CompareLessEqual", "CompareEqual",
@@ -96,7 +96,7 @@ Conversion:
 Format:
   defining: ["BitwidthOf", "PrecisionOf", "SignednessOf", "DomainOf"]
   derived: ["TrailingBitsOf", "ExponentBitsOf", "ExponentBiasOf"]
-  extrema: ["MaxFiniteOf", "MinFiniteOf", "MaxPositiveOf", "MinPositiveOf",
+  extrema: ["MinFiniteOf", "MaxFiniteOf", "MinPositiveOf", "MaxSubnormalOf", "MaxPositiveOf",
     "MaxNormalOf", "MinNormalOf"]
-  value: ["NextLessThan", "NextGreaterThan"]
+  value: ["SignificandOf", "NextLessThan", "NextGreaterThan"]
 

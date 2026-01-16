@@ -1,6 +1,13 @@
-StandardOperations: "../ConfigFiles/StandardOperations.yaml"
-Configurations: "../ConfigFiles/Configurations.yaml"
-Profiles: "../ConfigFiles/Profiles.yaml"
-Constraints: "../ConfigFiles/Constraints.yaml"
-Kappas: "../ConfigFiles/Kappas.yaml"
+YAML_ConfigFiles = Dict(
+    :StandardOperations => "../ConfigFiles/StandardOperations.yaml",
+    :Configurations => "../ConfigFiles/Configurations.yaml",
+    :Profiles => "../ConfigFiles/Profiles.yaml",
+    :Constraints => "../ConfigFiles/Constraints.yaml",
+    :Kappas => "../ConfigFiles/Kappas.yaml"
+)
+StandardOperations_yaml = "../ConfigFiles/StandardOperations.yaml"
+Configurations_yaml = "../ConfigFiles/Configurations.yaml"
+Profiles_yaml = "../ConfigFiles/Profiles.yaml"
+Constraints_yaml = "../ConfigFiles/Constraints.yaml"
+Kappas_yaml = "../ConfigFiles/Kappas.yaml"
 

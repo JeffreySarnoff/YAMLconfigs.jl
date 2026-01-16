@@ -1,14 +1,18 @@
 name = "YAMLconfigs"
 uuid = "d0519544-32dd-4a17-9a56-8c5ae55d459d"
-authors = ["Jeffrey Sarnoff <jeffrey.sarnoff@ieee.org>" ]
 version = "0.1.0"
+authors = ["Jeffrey Sarnoff <jeffrey.sarnoff@ieee.org>"]
 
 [deps]
+PythonCall = "6099a3de-0909-46bc-b1f4-468b9a2dfc0d"
+PythonCallHelpers = "82926614-86f1-43a3-92dc-771be2bbc0fa"
 YAML = "ddb6d928-2868-570f-bddf-ab3f9cf99eb6"
 
 [compat]
-julia = "1.12"
+PythonCall = "0.9.31"
+PythonCallHelpers = "0.1.0"
 YAML = "0.4"
+julia = "1.12"
 
 [extras]
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"

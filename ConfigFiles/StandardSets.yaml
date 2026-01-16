@@ -1,0 +1,29 @@
+Metadata:
+  description: P3109 operation sets
+  reference:
+    name: P3109 Interim Report
+    version: 3.2.0
+    uri: https://github.com/P3109/Public
+  source:
+    uri:  https://github.com/P3109/Public/blob/main/Exemplars/StandardSets.yaml
+    version: "0.1"
+
+AllRoundingModes: &AllRoundingModes
+  [ "NearestTiesToAway", "NearestTiesToEven", "ToOdd", 
+    "TowardNegative", "TowardPositive", "TowardZero",
+    "ToOdd",
+    "StochasticA", "StochasticB", "StochasticC"
+  ]
+
+AllSaturationModes: &AllSaturationModes
+  [ "OvfInf", "SatFinite", "SatPropagate" ]
+
+AllProjections: &AllProjections
+  RoundingModes: *AllRoundingModes
+  SaturationModes: *AllSaturationModes
+
+AllProjection: &AllProjection
+  ['(("NearestTiesToAway", "OvfInf"))', '(("NearestTiesToAway", "SatFinite"))', '(("NearestTiesToAway", "SatPropagate"))', '(("NearestTiesToEven", "OvfInf"))', '(("NearestTiesToEven", "SatFinite"))', '(("NearestTiesToEven", "SatPropagate"))', 
+   '(("ToOdd", "OvfInf"))', '(("ToOdd", "SatFinite"))', '(("ToOdd", "SatPropagate"))', 
+   '(("TowardNegative", "OvfInf"))', '(("TowardNegative", "SatFinite"))', '(("TowardNegative", "SatPropagate"))', '(("TowardPositive", "OvfInf"))', '(("TowardPositive", "SatFinite"))', '(("TowardPositive", "SatPropagate"))', '(("TowardZero", "OvfInf"))', '(("TowardZero", "SatFinite"))', '(("TowardZero", "SatPropagate"))',
+   '(("StochasticA", "OvfInf"))', '(("StochasticA", "SatFinite"))', '(("StochasticA", "SatPropagate"))', '(("StochasticB", "OvfInf"))', '(("StochasticB", "SatFinite"))', '(("StochasticB", "SatPropagate"))', '(("StochasticC", "OvfInf"))', '(("StochasticC", "SatFinite"))', '(("StochasticC", "SatPropagate"))']
