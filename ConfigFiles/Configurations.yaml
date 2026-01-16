@@ -23,28 +23,48 @@ Metadata:
     uri: >
       https://implementer.site/P3109/Implementation/v1.0.0/Kappas.yaml
 
+
 Core32:
-   - 'Add{fx, fy, fr}':
-      - "(fx == fy && fy == fr)"
-   - 'Multiply{fx, fy, fr}':
-      - "(fx == fy)"
-      - "(BitwidthOf(fr) >= BitwidthOf(fx))"
-      - "(PrecisionOf(fr) >= PrecisionOf(fx))"
-   - 'SqrtFast{fx, fr, ρ}':
-      - "(fx in {Binary8p3se})"
-      - "(fr in {Binary8p3se, Binary8p4se})"
+  - CoreOperations:
+      - IEEE754_format: ["binary32"]
+      - StochasticRounding:
+        - StochasticB:
+            - bits: "(Minimum(Precision, 16))"
+  - BlockSizes (B):
+      - core:
+          - elements: 32
+      - accelerated:
+          - elements: 64
+      - supported:
+          - elements: "(2^i for i=2..22)"
 
 Core64:
-   - 'Add{fx, fy, fr, ρ}':
-      - "(fx == fy)"
-      - "(PrecisionOf(fr) > PrecisionOf(fx))"
-      - "(ExponentBitsOf(fr) >= ExponentBitsOf(fx))"
-      - "([fx, fy] in {Binary8p3se, Binary8p4se})"
-      - "(fr in {Binary10p6se})"
-   - 'FMA{fx, fy, fz, fr, ρ}':
-      - "(fx == fy)"
-      - "(fz == fr)"
-      - "(BitwidthOf(fr) >= BitwidthOf(fx))"
-      - "(PrecisionOf(fr) >= PrecisionOf(fx))"
-
-
+  - CoreOperations:
+      - IEEE754_format: ["binary32", "binary64"]
+    BlockSizes (B):
+      - core:
+          - elements: [16, 32]
+      - accelerated:
+          - elements: [64]
+      - supported:
+          - elements: "(2^i for i=4..24, [24, 48])"
+  - Projections:
+      - RoundingModes:
+          - deterministic:
+              - NearestTiesToEven
+              - TowardNegative
+              - TowardPositive
+          - stochastic:
+             - StochasticB:
+                - bits: "(Minimum(Precision, 16))"  #needs same input and output
+             - notes:
+                - description: "xoroshiro128++ using top 16 bits."
+                - reference_implementation:
+                    https://implementer.site/P3109/Implementation/v1.0.0/Stochastic/Xoshiro128plusplus.c
+      - SaturationModes:
+          - OvfInf
+          - SatPropagate
+  - KappaApproximate:
+    - SqrtFast
+    - SinFast
+    - ExpFast

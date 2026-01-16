@@ -21,6 +21,6 @@ Core32:
    - formats: ["Binary8p3se", "Binary8p4se"]
 
 Core64:
-   - formats: "( [(Binary4p{i}sf for i in [1..3]), (Binary8p{i}se for i in [2..3])] )"
+   - formats: ["( [(Binary4p${i}sf for i in [1..2]), (Binary8p${i}se for i in [3..4])] )"]
 
   
