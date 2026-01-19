@@ -4,13 +4,19 @@ version = "0.1.0"
 authors = ["Jeffrey Sarnoff <jeffrey.sarnoff@ieee.org>"]
 
 [deps]
+CSV = "336ed68f-0bac-5ca0-87d4-7b16caf5d00b"
+CondaPkg = "992eb4ea-22a4-4c89-a5bb-47a3300528ab"
 PythonCall = "6099a3de-0909-46bc-b1f4-468b9a2dfc0d"
 PythonCallHelpers = "82926614-86f1-43a3-92dc-771be2bbc0fa"
+Tables = "bd369af6-aec1-5ad0-b16a-f7cc5008161c"
 YAML = "ddb6d928-2868-570f-bddf-ab3f9cf99eb6"
 
 [compat]
+CSV = "0.10.15"
+CondaPkg = "0.2.33"
 PythonCall = "0.9.31"
 PythonCallHelpers = "0.1.0"
+Tables = "1.12.1"
 YAML = "0.4"
 julia = "1.12"
 

@@ -14,7 +14,7 @@ Lists are given as standard YAML lists: `[ <item1>, <item2>, ... ]`.
 
 A tuple is given as a string bounded by parenthesis wrapped colons:
 
-- `"(: <first>, <second> :)"`.
+- `"((- <first>, <second> -))"`.
   - In a list of tuples, all tuples must be of the same length.
 
 ### Intervals
@@ -42,9 +42,9 @@ An interval is given as a string bounded by parenthesis wrapped brackets:
 An expression is given as a string bounded by parenthesis wrapped parenthesis:
 
 - `"(( <expression> ))"`
-
+within an expression,
 - a list  is given:     `"(( [ <item1>, <item2>, ... ] ))"`.
-- a tuple is given:     `"(( (: <first>, <second>, ... :) ))"`.
+- a tuple is given:     `"(( (- <first>, <second>, ... -) ))"`.
 - an interval is given: `"(( ([ <lowerbound>, <upperbound> ]) ))"`.
 
 #### Iterators

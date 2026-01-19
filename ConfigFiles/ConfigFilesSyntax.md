@@ -12,7 +12,7 @@ Lists are given as standard YAML lists: `[ <item1>, <item2>, ... ]`.
 
 ### Tuples
 
-A tuple is given as a string bounded by parenthesis wrapped colons: `"(: <first>, <second> :)"`.
+A tuple is given as a string bounded by parenthesis wrapped hyphens: `"(- <first>, <second> -)"`.
 - In a list of tuples, all tuples must be of the same length.
 
 ### Intervals
