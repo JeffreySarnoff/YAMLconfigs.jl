@@ -59,7 +59,7 @@ Multiple substitutions may be done within a single item:
 - `"(( [ (Binary4p${i}s${j} for i in [1..2] for j in ["f", "e"]) ] ))"`
   -  `[ Binary4p1sf, Binary4p2sf, Binary4p1se, Binary4p2se ]`.
 
-Two generated lists are concatenated when they are collectively wrapped in parenthesis:
-- `"(( ([Binary6p{i}sf for i in [1, 3, 4]], [Binary8p{i}se for i in [2..4]]) ))"`
+Two generated lists are concatenated when they are are adjacent within a YAML list:
+- `["(( [Binary6p{i}sf for i in [1, 3, 4]] ))", "(( [Binary8p{i}se for i in [2..4]] ))"]`
   - `[ Binary6p1sf, Binary6p3sf, Binary6p4sf, Binary8p2se, Binary8p3se, Binary8p4se ]`.
 

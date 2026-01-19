@@ -20,18 +20,22 @@ Metadata:
 Core32:
   - Add(fx, fy, fr, ρ):
       - "(( fx == fy ))"
-      - "(( fy == fr ))"
-      - "(( PrecisionOf(fr) >= PrecisionOf(fx) ))"
       - "(( BitwidthOf(fr) >= BitwidthOf(fx) ))"
+      - "(( PrecisionOf(fr) >= PrecisionOf(fx) ))"
+      - ρ
+          - "(- ToNearestTiesToEven, OvfInf -)"
+          - "(- ToNearestTiesToEven, SatFinite -)"  
   - SqrtFast(fx, fr, ρ):
-      - "(( fx in {Binary8p3se} ))"
+      - "(( fx in {Binary8p3se, Binary8p4se} ))"
       - "(( fr in {Binary8p3se, Binary8p4se} ))"
+      - "(( PrecisionOf(fr) >= PrecisionOf(fx) ))"
+      - ρ
+          - "(- ToNearestTiesToEven, SatFinite -)"
+          - "(- TowardZero, SatFinite -)"
 Core64:
   - Add(fx, fy, fr, ρ):
       - "(( fx == fy)
-      - "(( PrecisionOf(fr) >= PrecisionOf(fx) ))"
-      - "(( ExponentBitsOf(fr) >= ExponentBitsOf(fx) ))"
-      - "(( [fx, fy] in {Binary8p3se, Binary8p4se}  ))"
+      - "(( fx in {Binary8p3se, Binary8p4se}  ))"
       - "(( fr in {Binary10p6se}  ))"
   - FMA(fx, fy, fz, fr, ρ):
       - "(( fx == fy ))"
@@ -39,5 +43,5 @@ Core64:
       - "(( BitwidthOf(fr) >= BitwidthOf(fx) ))"
       - "(( PrecisionOf(fr) >= PrecisionOf(fx) ))"
       - ρ
+          - "(- ToNearestTiesToEven, OvfInf -)"
           - "(- ToNearestTiesToEven, SatFinite -)"
-          - "(- TowardZero, SatFinite -)"

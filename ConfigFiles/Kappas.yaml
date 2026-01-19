@@ -24,8 +24,9 @@ SqrtFast:
       kappa: 1
   Projections:
     RoundingModes:
-      ["NearestTiesToAway", "TowardZero", StochasticB: [bits: "(16)"]]
-    SaturationModes: "(∀)"
+      ["NearestTiesToEven", "TowardZero"]
+    SaturationModes: 
+      ["SatFinite"]
   Notes: |
     Exhaustive testing performed for all supported formats.
     Reference: "https://implementer.site/P3109/Kappas/SqrtFast.c"
@@ -40,7 +41,7 @@ SinFast:
   Projections:
     RoundingModes:
       ["NearestTiesToEven", "TowardZero", ["StochasticA": "(( Bits = 16 ))"]]
-    SaturationModes: "(∀)"
+    SaturationModes: ["OvfInf", "SatFinite"]
   Notes: | 
     CORDIC algorithm used with adaptive iteration count based on input range.
   Verification:
