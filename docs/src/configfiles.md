@@ -63,7 +63,7 @@ Core32:
     - "(fx == fy && fy == fr)"
   - 'Multiply{fx, fy, fr}':
     - "(fx == fy)"
-    - "(BitwidthOf(fr) >= BitwidthOf(fx))"
+    - "(BitwidthOf(fr) >= BitwidthOf(fx)"
 ```
 
 ### Constraints.yaml
@@ -98,7 +98,7 @@ Approximation error bounds for "fast" (approximate) functions:
 SqrtFast:
   Approximates: "Sqrt"
   Kappa:
-    - intervals: "([-Inf, Inf])"
+    - interval: "([-Inf, Inf])"
       kappa: 1
   Projections:
     RoundingModes: ["NearestTiesToAway", "Toward"]

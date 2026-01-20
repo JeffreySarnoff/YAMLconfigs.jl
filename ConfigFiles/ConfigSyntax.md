@@ -14,7 +14,7 @@ Lists are given as standard YAML lists: `[ <item1>, <item2>, ... ]`.
 
 A tuple is given as a string bounded by parenthesis wrapped colons:
 
-- `"((- <first>, <second> -))"`.
+- `"( <first>, <second>  )"`.
   - In a list of tuples, all tuples must be of the same length.
 
 ### Intervals
@@ -41,25 +41,25 @@ An interval is given as a string bounded by parenthesis wrapped brackets:
 
 An expression is given as a string bounded by parenthesis wrapped parenthesis:
 
-- `"(( <expression> ))"`
+- `"( <expression> )"`
 within an expression,
-- a list  is given:     `"(( [ <item1>, <item2>, ... ] ))"`.
-- a tuple is given:     `"(( (- <first>, <second>, ... -) ))"`.
-- an interval is given: `"(( ([ <lowerbound>, <upperbound> ]) ))"`.
+- a list  is given:     `"( [ <item1>, <item2>, ... ] )"`.
+- a tuple is given:     `"( ( <first>, <second>, ...  ) )"`.
+- an interval is given: `"( ([ <lowerbound>, <upperbound> ]) )"`.
 
 #### Iterators
 
 Within an expression, string interpolating iterators may be used to generate lists.
 
 String interpolation is done with "prefix${i}suffix", where `i` is replaced:
-- `"(( [ (Binary4p${i}sf for i in [1..3]) ] ))" `
+- `"( [ (Binary4p${i}sf for i in [1..3]) ] )" `
   -  `[ Binary4p1sf, Binary4p2sf, Binary4p3sf ]`.
 
 Multiple substitutions may be done within a single item:
-- `"(( [ (Binary4p${i}s${j} for i in [1..2] for j in ["f", "e"]) ] ))"`
+- `"( [ (Binary4p${i}s${j} for i in [1..2] for j in ["f", "e"]) ] )"`
   -  `[ Binary4p1sf, Binary4p2sf, Binary4p1se, Binary4p2se ]`.
 
 Two generated lists are concatenated when they are are adjacent within a YAML list:
-- `["(( [Binary6p{i}sf for i in [1, 3, 4]] ))", "(( [Binary8p{i}se for i in [2..4]] ))"]`
+- `["( [Binary6p{i}sf for i in [1, 3, 4]] )", "( [Binary8p{i}se for i in [2..4]] )"]`
   - `[ Binary6p1sf, Binary6p3sf, Binary6p4sf, Binary8p2se, Binary8p3se, Binary8p4se ]`.
 

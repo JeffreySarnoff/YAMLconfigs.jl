@@ -12,34 +12,34 @@ Lists are given as standard YAML lists: `[ <item1>, <item2>, ... ]`.
 
 ### Tuples
 
-A tuple is given as a string bounded by parenthesis wrapped hyphens: `"(- <first>, <second> -)"`.
+A tuple is given as a string bounded by parentheses wrapped vertical bars: `"(| <first>, <second> |)"`.
 - In a list of tuples, all tuples must be of the same length.
 
 ### Intervals
 
-An interval is given as a string bounded by parenthesis wrapped bracket: `"([ <lowerbound>, <upperbound> ])"`.
+An interval is given as a string bounded by parentheses wrapped brackets: `"([ <lowerbound>, <upperbound> ])"`.
 - The brackets distinguish intervals from tuples.
 
 
 ### Expressions
 
-An expression is given as a string bounded by parenthesis wrapped parenthesis: `"(( <expression> ))"`.
+An expression is given as a string bounded by parenthesis wrapped parenthesis: `"( <expression> )"`.
 
-Within an expression, a list  is given:     `"(( [ <item1>, <item2>, ... ] ))"`.
-Within an expression, a tuple is given:     `"(( (: <first>, <second>, ... :) ))"`.
-Within an expression, an interval is given: `"(( ([ <lowerbound>, <upperbound ]) ))"`.
+Within an expression, a list  is given:     `"( [ <item1>, <item2>, ... ] )"`.
+Within an expression, a tuple is given:     `"( (| <first>, <second>, ... |) )"`.
+Within an expression, an interval is given: `"( ([ <lowerbound>, <upperbound ]) )"`.
 
 #### Iterators
 
 Within an expression, string interpolating iterators may be used to generate lists.
 String interpolation is done with "prefix${i}suffix", where `i` is replaced:
-`"(( [ (Binary4p${i}sf for i in [1..3]) ] ))" ` evaluates as
+`"( [ (Binary4p${i}sf for i in [1..3]) ] )" ` evaluates as
     `[ Binary4p1sf, Binary4p2sf, Binary4p3sf ]`.
 Multiple substitutions may be done within a single item:
-`"(( [ (Binary4p${i}s${j} for i in [1..2] for j in ["f", "e"]) ] ))" ` evaluates as 
+`"( [ (Binary4p${i}s${j} for i in [1..2] for j in ["f", "e"]) ] )" ` evaluates as 
     `[ Binary4p1sf, Binary4p2sf, Binary4p1se, Binary4p2se ]`.
 Two generated lists are concatenated when they are collectively wrapped in parenthesis:
-   `formats: "(( ([Binary6p{i}sf for i in [1, 3, 4]], [Binary8p{i}se for i in [2..4]]) ))"` evaluates as
+   `formats: "( ([Binary6p{i}sf for i in [1, 3, 4]], [Binary8p{i}se for i in [2..4]]) )"` evaluates as
    `formats:  [ Binary6p1sf, Binary6p3sf, Binary6p4sf, Binary8p2se, Binary8p3se, Binary8p4se ]`.
 
 

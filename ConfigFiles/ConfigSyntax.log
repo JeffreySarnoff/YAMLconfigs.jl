@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.1.7)  14 JAN 2026 11:35
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.1.7)  19 JAN 2026 10:19
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -413,13 +413,8 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) (C:\Users\Custom PC\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
-Overfull \hbox (6.74898pt too wide) in paragraph at lines 134--134
-[]\T1/lmtt/m/n/10 "(( [ (Binary4p${i}s${j} for i in [1..2] for j in ["f", "e"]) ] ))" 
- []
-
-
-Overfull \hbox (90.74873pt too wide) in paragraph at lines 141--141
-[]\T1/lmtt/m/n/10 "(( ([ Binary6p${i}sf for i in [1, 3, 4] ], [ Binary8p${k}se for k in [2..4] ]) ))"[] 
+Overfull \hbox (80.24876pt too wide) in paragraph at lines 141--141
+[]\T1/lmtt/m/n/10 "( ([ Binary6p${i}sf for i in [1, 3, 4] ], [ Binary8p${k}se for k in [2..4] ]) )"[] 
  []
 
 
@@ -444,7 +439,7 @@ Here is how much of TeX's memory you used:
  1141 hyphenation exceptions out of 8191
  83i,5n,93p,1046b,457s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/Custom PC/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx10.pfb><C:/Users/Custom PC/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx12.pfb><C:/Users/Custom PC/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr10.pfb><C:/Users/Custom PC/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Users/Custom PC/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt10.pfb>
-Output written on ConfigSyntax.pdf (2 pages, 121484 bytes).
+Output written on ConfigSyntax.pdf (2 pages, 121477 bytes).
 PDF statistics:
  77 PDF objects out of 1000 (max. 8388607)
  10 named destinations out of 1000 (max. 500000)

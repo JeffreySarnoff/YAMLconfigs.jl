@@ -23,8 +23,8 @@
     {
       "Add(fx, fy, fr, ρ)": [
         "(fx == fy && fy == fr)",
-        "(PrecisionOf(fr) >= PrecisionOf(fx))",
-        "(BitwidthOf(fr) >= BitwidthOf(fx))"
+        "(PrecisionOf(fr) >= PrecisionOf(fx)",
+        "(BitwidthOf(fr) >= BitwidthOf(fx)"
       ]
     },
     {
@@ -38,8 +38,8 @@
     {
       "Add(fx, fy, fr, ρ)": [
         "(fx == fy)",
-        "(PrecisionOf(fr) >= PrecisionOf(fx))",
-        "(ExponentBitsOf(fr) >= ExponentBitsOf(fx))",
+        "(PrecisionOf(fr) >= PrecisionOf(fx)",
+        "(ExponentBitsOf(fr) >= ExponentBitsOf(fx)",
         "([fx, fy] in {Binary8p3se, Binary8p4se})",
         "(fr in {Binary10p6se})"
       ]
@@ -48,8 +48,8 @@
       "FMA(fx, fy, fz, fr, ρ)": [
         "(fx == fy)",
         "(fz == fr)",
-        "(BitwidthOf(fr) >= BitwidthOf(fx))",
-        "(PrecisionOf(fr) >= PrecisionOf(fx))",
+        "(BitwidthOf(fr) >= BitwidthOf(fx)",
+        "(PrecisionOf(fr) >= PrecisionOf(fx)",
         "ρ - \"( ToNearestTiesToEven, SatFinite )\" - \"( TowardZero, SatFinite )\""
       ]
     }

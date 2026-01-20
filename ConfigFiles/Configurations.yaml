@@ -31,7 +31,7 @@ Core32:
         - Rounding:
           - NearestTiesToEven
           - StochasticB:
-            - bits: "(( Minimum(Precision(FMT), 16) ))"
+            - bits: "( Minimum(Precision(FMT), 16) )"
         - Saturation:
           - SatPropagate
   - BlockSizes (B):
@@ -54,7 +54,7 @@ Core64:
       - accelerated:
           - elements: [64]
       - supported:
-          - elements: "(( 2^i for i=4..24 ))"
+          - elements: "( 2^i for i=4..24 )"
   - Projections:
       - RoundingModes:
           - deterministic:
@@ -63,7 +63,7 @@ Core64:
               - TowardPositive
           - stochastic:
              - StochasticB:
-                - bits: "(( Minimum(Precision(FMT), 16) ))"  #needs same input and output
+                - bits: "( Minimum(Precision(FMT), 16) )"  #needs same input and output
              - notes:
                 - description: "xoroshiro128++ using top 16 bits."
                 - reference_implementation:

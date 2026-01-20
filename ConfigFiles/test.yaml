@@ -20,7 +20,7 @@ Metadata:
 SqrtFast:
   Approximates: Sqrt
   Kappa:
-    - intervals: "( '[ >=(-Inf), <=(Inf) ]' )"
+    - interval: "( '[ >=(-Inf), <=(Inf) ]' )"
       kappa: 1
   Projections:
     RoundingModes:
@@ -35,11 +35,11 @@ SqrtFast:
 SinFast:
   Approximates: Sin
   Kappa:
-    - intervals: (" [ >=(-π), <=(π) ] ")
+    - interval: (" [ >=(-π), <=(π) ] ")
       kappa: 1
-    - intervals:
-        - (" [ >=(-Inf), <=(-π)) ] ")
-        - (" [ >=(-π), <=(Inf) ] ")
+    - interval:
+        - "[ >=(-Inf), <=(-π)) ]"
+        - " [ >=(-π), <=(Inf) ] "
       kappa: 2
   Projections:
     RoundingModes:
@@ -62,13 +62,13 @@ ExpFast:
       - Round{ρ} in {ToOdd, StochasticA}
       - Sat{ρ} in {SatPropagate}
     Kappa:
-      - intervals: (" [>=(0), <=(1)] ")
+      - interval: (" [>=(0), <=(1)] ")
         kappa: 0
-      - intervals:
+      - interval:
           - "( [>=(-10), <(0)] )"
           - "( [>(1), <=(12)] )"
         kappa: 1
-      - intervals:
+      - interval:
           - "( [>=(-Inf), <(-10)] )"
           - "( [>(12), <=(Inf)] )"
         kappa: 2
@@ -84,13 +84,13 @@ ExpFast:
           bits: "16"
       - Sat{ρ} in {SatPropagate}
     Kappa:
-      - intervals: "( [>=(-1), <=(1)] )"
+      - interval: "( [>=(-1), <=(1)] )"
         kappa: 0
-      - intervals:
+      - interval:
           - "( [>(-11), <(-1)] )"
           - "( [>(1), <=(13)] )"
         kappa: 2
-      - intervals:
+      - interval:
           - "( [>=(-Inf), <=(-11)] )"
           - "( [>(13), <=(Inf)] )"
         kappa: 3

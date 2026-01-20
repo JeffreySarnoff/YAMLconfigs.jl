@@ -1,0 +1,192 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[]{article}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{clearsans}
+\usepackage{listings}
+\lstset{
+basicstyle=\ttfamily%\footnotesize, % Monospaced font with small size
+%breaklines=true % Enable line breaking
+}
+\usepackage[margin=0.4in]{geometry}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in lstlisting environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+\begin{lstlisting}[mathescape]
+Format["Core32"] = ["Binary8p3se", "Binary8p4se"]
+Format["Core64"] = ["Binary4p1sf", "Binary4p2sf", "Binary8p3se", "Binary8p4se"]
+
+IEEE754_format["Core32"] = ["binary32"]
+  ConvertToIEEE754(fx, $\phi$, $\rho$)
+  > ConvertToIEEE754(Binary8p3se, binary32, $\rho$)
+  > ConvertToIEEE754(Binary8p4se, binary32, $\rho$)
+  $\rho$ in [
+    (NearestTiesToEven, SatPropagate),
+    (StochasticB(Minimum(Precision(fx), 16)), SatPropagate),
+  ]
+  * ConvertToIEEE754{fx=Binary8p3se, $\phi$=binary32, $\rho$=(NearestTiesToEven, SatPropagate)}
+  * ConvertToIEEE754{Binary8p3se, binary32, (NearestTiesToEven, SatPropagate)}
+
+  * ConvertToIEEE754(f=Binary8p3se, $\phi$=binary32, $\rho$=(NearestTiesToEven, SatPropagate))
+  * ConvertToIEEE754(f=Binary8p3se, $\phi$=binary32, $\rho$=(StochasticB(3), SatPropagate))
+  * ConvertToIEEE754(f=Binary8p4se, $\phi$=binary32, $\rho$=(NearestTiesToEven, SatPropagate))
+  * ConvertToIEEE754(f=Binary8p4se, $\phi$=binary32, $\rho$=(StochasticB(4), SatPropagate))
+
+  ConvertFromIEEE754(fx, $\phi$, $\rho$)
+  > ConvertFromIEEE754(binary32, Binary8p3se, $\rho$)
+  > ConvertFromIEEE754(binary32, Binary8p4se, $\rho$)
+  $\rho$ in [
+    (NearestTiesToEven, SatPropagate),
+    (StochasticB(Minimum(Precision(fx), 16)), SatPropagate),
+  ]
+  * ConvertFromIEEE754($\phi$=binary32, f=Binary8p3se, $\rho$=(NearestTiesToEven, SatPropagate))
+  * ConvertFromIEEE754($\phi$=binary32, f=Binary8p3se, $\rho$=(StochasticB(3), SatPropagate))
+  * ConvertFromIEEE754($\phi$=binary32, f=Binary8p4se, $\rho$=(NearestTiesToEven, SatPropagate))
+  * ConvertFromIEEE754($\phi$=binary32, f=Binary8p3se, $\rho$=(StochasticB(4), SatPropagate))
+\end{lstlisting}
+
+\clearpage
+\begin{lstlisting}[mathescape]
+Constraints["Core32"] = [
+  [ Add(fx, fy, fr, $\rho$) = [
+      "( fx == fy )",
+      "( BitwidthOf(fr) >= BitwidthOf(fx) )",
+      "( PrecisionOf(fr) >= PrecisionOf(fx) )"
+      ]
+  ],
+  [ SqrtFast(fx, fr, $\rho$) = [
+     "( fx in {Binary8p3se} )",
+     "( fr in {Binary8p3se, Binary8p4se} )"
+     ]
+  ]
+]
+
+Add(fx, fy, fr, $\rho$)
+    --note: available formats: [Binary8p3se, Binary8p4se]
+    constraints:
+      - "( BitwidthOf(fr) >= BitwidthOf(fx) )"
+        - fr in {Binary8p3se, Binary8p4se}
+        - fx in {Binary8p3se, Binary8p4se}
+      - PrecisionOf(fr) >= PrecisionOf(fx)"
+        - fr in {Binary8p4se}, fx in {Binary8p3se, Binary8p4se}
+        - fr in {Binary8p3se}, fx in {Binary8p3se}
+      - fx == fy
+      > Add(Binary8p3se, Binary8p3se, Binary8p3se, $\rho$)
+      > Add(Binary8p3se, Binary8p3se, Binary8p4se, $\rho$)
+      > Add(Binary8p4se, Binary8p4se, Binary8p4se, $\rho$)
+      - $\rho$ in { (ToNearestTiesToEven, OvfInf), (ToNearestTiesToEven, SatFinite) }
+      * Add(Binary8p3se, Binary8p3se, Binary8p3se, (ToNearestTiesToEven, OvfInf))
+      * Add(Binary8p3se, Binary8p3se, Binary8p4se, (ToNearestTiesToEven, OvfInf))
+      * Add(Binary8p4se, Binary8p4se, Binary8p4se, (ToNearestTiesToEven, OvfInf))
+      * Add(Binary8p3se, Binary8p3se, Binary8p3se, (ToNearestTiesToEven, SatFinite))
+      * Add(Binary8p3se, Binary8p3se, Binary8p4se, (ToNearestTiesToEven, SatFinite))
+      * Add(Binary8p4se, Binary8p4se, Binary8p4se, (ToNearestTiesToEven, SatFinite))
+
+\end{lstlisting}
+
+\clearpage
+\begin{lstlisting}[mathescape]
+SqrtFast(fx, fr, $\rho$)
+    available formats: [Binary8p3se, Binary8p4se]
+    constraints:
+      - fr in {Binary8p3se, Binary8p4se}
+      - fx in {Binary8p4se, Binary8p4se}
+      - PrecisionOf(fr) >= PrecisionOf(fx)
+      > SqrtFast(Binary8p3se, Binary8p3se, $\rho$)
+      > SqrtFast(Binary8p3se, Binary8p4se, $\rho$)
+      > SqrtFast(Binary8p4se, Binary8p4se, $\rho$)
+      -  $\rho$ in { (ToNearestTiesToEven, SatFinite), (TowardZero, SatFinite) }
+      * SqrtFast(Binary8p3se, Binary8p3se, (ToNearestTiesToEven, SatFinite))
+      * SqrtFast(Binary8p3se, Binary8p4se, (ToNearestTiesToEven, SatFinite))
+      * SqrtFast(Binary8p4se, Binary8p4se, (ToNearestTiesToEven, SatFinite))
+      * SqrtFast(Binary8p3se, Binary8p3se, (TowardZero, SatFinite))
+      * SqrtFast(Binary8p3se, Binary8p4se, (TowardZero, SatFinite))
+      * SqrtFast(Binary8p4se, Binary8p4se, (TowardZero, SatFinite))
+
+all $\rho$
+  [ (ToNearestTiesToEven, OvfInf), (ToNearestTiesToEven, SatFinite), (TowardZero, SatFinite) ]
+\end{lstlisting}
+\clearpage
+\begin{lstlisting}[mathescape]
+Signatures for "Core32":
+
+    <Add(x::fx, y::fy, r::fr, $\rho$)>
+    Add(x::Binary8p3se, y::Binary8p3se, r::Binary8p3se, $\rho$=(ToNearestTiesToEven, OvfInf))
+    Add(x::Binary8p3se, y::Binary8p3se, r::Binary8p4se, $\rho$=(ToNearestTiesToEven, OvfInf))
+    Add(x::Binary8p4se, y::Binary8p4se, r::Binary8p4se, $\rho$=(ToNearestTiesToEven, OvfInf))
+    Add(x::Binary8p3se, y::Binary8p3se, r::Binary8p3se, $\rho$=(ToNearestTiesToEven, SatFinite))
+    Add(x::Binary8p3se, y::Binary8p3se, r::Binary8p4se, $\rho$=(ToNearestTiesToEven, SatFinite))
+    Add(x::Binary8p4se, y::Binary8p4se, r::Binary8p4se, $\rho$=(ToNearestTiesToEven, SatFinite))
+
+    <SqrtFast(x::fx, r::fr, $\rho$)>
+    SqrtFast(x::Binary8p3se, r::Binary8p3se, $\rho$=(ToNearestTiesToEven, SatFinite))
+    SqrtFast(x::Binary8p3se, r::Binary8p4se, $\rho$=(ToNearestTiesToEven, SatFinite))
+    SqrtFast(x::Binary8p4se, r::Binary8p4se, $\rho$=(ToNearestTiesToEven, SatFinite))
+    SqrtFast(x::Binary8p3se, r::Binary8p3se, $\rho$=(TowardZero, SatFinite))
+    SqrtFast(x::Binary8p3se, r::Binary8p4se, $\rho$=(TowardZero, SatFinite))
+    SqrtFast(x::Binary8p4se, r::Binary8p4se, $\rho$=(TowardZero, SatFinite))
+
+    <ConvertToIEEE754(x::f, r, $\rho$)>
+    ConvertToIEEE754(x::Binary8p3se, r=binary32, $\rho$=(NearestTiesToEven, SatPropagate))
+    ConvertToIEEE754(x::Binary8p3se, r=binary32, $\rho$=(StochasticB(3), SatPropagate))
+    ConvertToIEEE754(x::Binary8p4se, r=binary32, $\rho$=(NearestTiesToEven, SatPropagate))
+    ConvertToIEEE754(x::Binary8p4se, r=binary32, $\rho$=(StochasticB(4), SatPropagate))
+
+    <ConvertFromIEEE754(x::f754, r, $\rho$)>
+    ConvertFromIEEE754(x::binary32, r=Binary8p3se, $\rho$=(NearestTiesToEven, SatPropagate))
+    ConvertFromIEEE754(x::binary32, r=Binary8p3se, $\rho$=(StochasticB(3), SatPropagate))
+    ConvertFromIEEE754(x::binary32, r=Binary8p4se, $\rho$=(NearestTiesToEven, SatPropagate))
+    ConvertFromIEEE754(x::binary32, r=Binary8p4se, $\rho$=(StochasticB(4), SatPropagate))
+
+    <Convert(x::f, r, $\rho$)>
+    Convert(x::Binary8p3se, r=Binary8p4se, $\rho$=(NearestTiesToEven, SatPropagate))
+    Convert(x::Binary8p4se, r=Binary8p3se, $\rho$=(NearestTiesToEven, SatPropagate))
+    Convert(x::Binary8p3se, r=Binary8p4se, $\rho$=(StochasticB(3), SatPropagate))
+    Convert(x::Binary8p4se, r=Binary8p3se, $\rho$=(StochasticB(4), SatPropagate))
+\end{lstlisting}
+
+\end{document}

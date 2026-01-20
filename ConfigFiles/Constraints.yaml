@@ -19,29 +19,29 @@ Metadata:
       https://implementer.site/P3109/Implementation/v1.0.0/Constraints.yaml
 Core32:
   - Add(fx, fy, fr, ρ):
-      - "(( fx == fy ))"
-      - "(( BitwidthOf(fr) >= BitwidthOf(fx) ))"
-      - "(( PrecisionOf(fr) >= PrecisionOf(fx) ))"
+      - "( fx == fy )"
+      - "( BitwidthOf(fr) >= BitwidthOf(fx) )"
+      - "( PrecisionOf(fr) >= PrecisionOf(fx) )"
       - ρ
-          - "(- ToNearestTiesToEven, OvfInf -)"
-          - "(- ToNearestTiesToEven, SatFinite -)"  
+          - "(| ToNearestTiesToEven, OvfInf  |)"
+          - "(| ToNearestTiesToEven, SatFinite |)"  
   - SqrtFast(fx, fr, ρ):
-      - "(( fx in {Binary8p3se, Binary8p4se} ))"
-      - "(( fr in {Binary8p3se, Binary8p4se} ))"
-      - "(( PrecisionOf(fr) >= PrecisionOf(fx) ))"
+      - "( fx in {Binary8p3se, Binary8p4se} )"
+      - "( fr in {Binary8p3se, Binary8p4se} )"
+      - "( PrecisionOf(fr) >= PrecisionOf(fx) )"
       - ρ
-          - "(- ToNearestTiesToEven, SatFinite -)"
-          - "(- TowardZero, SatFinite -)"
+          - "(| ToNearestTiesToEven, SatFinite  |)"
+          - "(| TowardZero, SatFinite  |)"
 Core64:
   - Add(fx, fy, fr, ρ):
-      - "(( fx == fy)
-      - "(( fx in {Binary8p3se, Binary8p4se}  ))"
-      - "(( fr in {Binary10p6se}  ))"
+      - "( fx == fy)
+      - "( fx in {Binary8p3se, Binary8p4se}  )"
+      - "( fr in {Binary10p6se}  )"
   - FMA(fx, fy, fz, fr, ρ):
-      - "(( fx == fy ))"
-      - "(( fz == fr ))"
-      - "(( BitwidthOf(fr) >= BitwidthOf(fx) ))"
-      - "(( PrecisionOf(fr) >= PrecisionOf(fx) ))"
+      - "( fx == fy )"
+      - "( fz == fr )"
+      - "( BitwidthOf(fr) >= BitwidthOf(fx) )"
+      - "( PrecisionOf(fr) >= PrecisionOf(fx) )"
       - ρ
-          - "(- ToNearestTiesToEven, OvfInf -)"
-          - "(- ToNearestTiesToEven, SatFinite -)"
+          - "(| ToNearestTiesToEven, OvfInf  |)"
+          - "(| ToNearestTiesToEven, SatFinite |)"

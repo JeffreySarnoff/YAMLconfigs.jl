@@ -31,28 +31,33 @@
 Format["Core32"] = ["Binary8p3se", "Binary8p4se"]
 Format["Core64"] = ["Binary4p1sf", "Binary4p2sf", "Binary8p3se", "Binary8p4se"]
 
-Constraints["Core32"]
-  - Add(fx, fy, fr, ρ):
-      - "(( fx == fy ))"
-      - "(( BitwidthOf(fr) >= BitwidthOf(fx) ))"
-      - "(( PrecisionOf(fr) >= PrecisionOf(fx) ))"
-  - SqrtFast(fx, fr, ρ):
-      - "(( fx in {Binary8p3se} ))"
-      - "(( fr in {Binary8p3se, Binary8p4se} ))"
+Constraints["Core32"] = [
+  [ Add(fx, fy, fr, ρ) = [
+      "( fx == fy )",
+      "( BitwidthOf(fr) >= BitwidthOf(fx) )",
+      "( PrecisionOf(fr) >= PrecisionOf(fx) )" 
+      ]
+  ],
+  [ SqrtFast(fx, fr, ρ) = [
+     "( fx in {Binary8p3se} )",
+     "( fr in {Binary8p3se, Binary8p4se} )"
+     ]
+  ]
+]
 
 Add(fx, fy, fr, ρ)
     available formats: [Binary8p3se, Binary8p4se]
     constraints:
-      - "(( BitwidthOf(fr) >= BitwidthOf(fx) ))"
+      - "( BitwidthOf(fr) >= BitwidthOf(fx) )"
         - fr in {Binary8p3se, Binary8p4se}
         - fx in {Binary8p3se, Binary8p4se}
       - PrecisionOf(fr) >= PrecisionOf(fx)"
         - fr in {Binary8p4se}, fx in {Binary8p3se, Binary8p4se}
         - fr in {Binary8p3se}, fx in {Binary8p3se}
       - fx == fy
-      * Add(Binary8p3se, Binary8p3se, Binary8p3se, ρ)
-      * Add(Binary8p3se, Binary8p3se, Binary8p4se, ρ)
-      * Add(Binary8p4se, Binary8p4se, Binary8p4se, ρ)
+      > Add(Binary8p3se, Binary8p3se, Binary8p3se, ρ)
+      > Add(Binary8p3se, Binary8p3se, Binary8p4se, ρ)
+      > Add(Binary8p4se, Binary8p4se, Binary8p4se, ρ)
       - ρ in { (ToNearestTiesToEven, OvfInf), (ToNearestTiesToEven, SatFinite) }
       * Add(Binary8p3se, Binary8p3se, Binary8p3se, (ToNearestTiesToEven, OvfInf))
       * Add(Binary8p3se, Binary8p3se, Binary8p4se, (ToNearestTiesToEven, OvfInf))
@@ -67,9 +72,9 @@ SqrtFast(fx, fr, ρ)
       - fr in {Binary8p3se, Binary8p4se}
       - fx in {Binary8p4se, Binary8p4se}
       - PrecisionOf(fr) >= PrecisionOf(fx)
-      * SqrtFast(Binary8p3se, Binary8p3se, ρ)
-      * SqrtFast(Binary8p3se, Binary8p4se, ρ)
-      * SqrtFast(Binary8p4se, Binary8p4se, ρ)
+      > SqrtFast(Binary8p3se, Binary8p3se, ρ)
+      > SqrtFast(Binary8p3se, Binary8p4se, ρ)
+      > SqrtFast(Binary8p4se, Binary8p4se, ρ)
       -  ρ in { (ToNearestTiesToEven, SatFinite), (TowardZero, SatFinite) }
       * SqrtFast(Binary8p3se, Binary8p3se, (ToNearestTiesToEven, SatFinite))
       * SqrtFast(Binary8p3se, Binary8p4se, (ToNearestTiesToEven, SatFinite))
@@ -77,3 +82,19 @@ SqrtFast(fx, fr, ρ)
       * SqrtFast(Binary8p3se, Binary8p3se, (TowardZero, SatFinite))
       * SqrtFast(Binary8p3se, Binary8p4se, (TowardZero, SatFinite))
       * SqrtFast(Binary8p4se, Binary8p4se, (TowardZero, SatFinite))
+
+Signatures for Profile "Core32":
+    * Add(Binary8p3se, Binary8p3se, Binary8p3se, (ToNearestTiesToEven, OvfInf))
+    * Add(Binary8p3se, Binary8p3se, Binary8p4se, (ToNearestTiesToEven, OvfInf))
+    * Add(Binary8p4se, Binary8p4se, Binary8p4se, (ToNearestTiesToEven, OvfInf))
+    * Add(Binary8p3se, Binary8p3se, Binary8p3se, (ToNearestTiesToEven, SatFinite))
+    * Add(Binary8p3se, Binary8p3se, Binary8p4se, (ToNearestTiesToEven, SatFinite))
+    * Add(Binary8p4se, Binary8p4se, Binary8p4se, (ToNearestTiesToEven, SatFinite))
+
+    * SqrtFast(Binary8p3se, Binary8p3se, (ToNearestTiesToEven, SatFinite))
+    * SqrtFast(Binary8p3se, Binary8p4se, (ToNearestTiesToEven, SatFinite))
+    * SqrtFast(Binary8p4se, Binary8p4se, (ToNearestTiesToEven, SatFinite)) 
+    * SqrtFast(Binary8p3se, Binary8p3se, (TowardZero, SatFinite))
+    * SqrtFast(Binary8p3se, Binary8p4se, (TowardZero, SatFinite))
+    * SqrtFast(Binary8p4se, Binary8p4se, (TowardZero, SatFinite))
+
