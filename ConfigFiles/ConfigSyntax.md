@@ -51,12 +51,12 @@ within an expression,
 
 Within an expression, string interpolating iterators may be used to generate lists.
 
-String interpolation is done with "prefix${i}suffix", where `i` is replaced:
-- `"( [ (Binary4p${i}sf for i in [1..3]) ] )" `
+String interpolation is done with "prefix$(i)suffix", where `i` is replaced:
+- `"( [ (Binary4p$(i)sf for i in [1..3]) ] )" `
   -  `[ Binary4p1sf, Binary4p2sf, Binary4p3sf ]`.
 
 Multiple substitutions may be done within a single item:
-- `"( [ (Binary4p${i}s${j} for i in [1..2] for j in ["f", "e"]) ] )"`
+- `"( [ (Binary4p$(i)s$(j) for i in [1..2] for j in ["f", "e"]) ] )"`
   -  `[ Binary4p1sf, Binary4p2sf, Binary4p1se, Binary4p2se ]`.
 
 Two generated lists are concatenated when they are are adjacent within a YAML list:

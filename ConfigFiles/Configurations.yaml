@@ -26,52 +26,51 @@ Metadata:
 
 Core32:
   - CoreOperations:
-      - IEEE754_format: ["binary32"]
-      - Projection:
-        - Rounding:
-          - NearestTiesToEven
-          - StochasticB:
-            - bits: "( Minimum(Precision(FMT), 16) )"
-        - Saturation:
-          - SatPropagate
+    - IEEE754_format: ["binary32"]
+  - Projection:
+    - Rounding:
+      - "NearestTiesToEven"
+      - StochasticB:
+        - bits: "( Minimum(Precision(FMT), 16) )"
+    - Saturation:
+      - "SatPropagate"
   - BlockSizes (B):
-      - core:
-          - elements: 32
-      - accelerated:
-          - elements: 64
-      - supported:
-          - elements: [32, 64]
+    - core:
+      elements: 32
+    - accelerated:
+      elements: 64
+    - supported:
+      elements: [32, 64]
+  - KappaApproximate:
+    - "SqrtFast"
+    - "ExpFast"
 
 Core64:
   - CoreOperations:
-      - IEEE754_format: ["binary32", "binary64"]
-      - IEEE754_format:
-        - "binary32"
-        - "binary64" 
-    BlockSizes (B):
-      - core:
-          - elements: [16, 32]
-      - accelerated:
-          - elements: [64]
-      - supported:
-          - elements: "( 2^i for i=4..24 )"
+    - IEEE754_format: ["binary32", "binary64"]
   - Projections:
-      - RoundingModes:
-          - deterministic:
-              - NearestTiesToEven
-              - TowardNegative
-              - TowardPositive
-          - stochastic:
-             - StochasticB:
-                - bits: "( Minimum(Precision(FMT), 16) )"  #needs same input and output
-             - notes:
-                - description: "xoroshiro128++ using top 16 bits."
-                - reference_implementation:
-                    https://implementer.site/P3109/Implementation/v1.0.0/Stochastic/Xoshiro128plusplus.c
-      - SaturationModes:
-          - OvfInf
-          - SatPropagate
+    - Rounding:
+      - "NearestTiesToEven"
+      - "TowardNegative"
+      - "TowardPositive"
+      - StochasticB:
+        - bits: "( Minimum(Precision(fx), 16) )"
+        - notes:
+          - description: "xoroshiro128++ using top 16 bits."
+          - reference_implementation:
+            uri: >
+              https://implementer.site/P3109/Implementation/v1.0.0/Stochastic/Xoshiro128plusplus.c
+    - Saturation:
+      - "OvfInf"
+      - "SatPropagate"
+  - BlockSizes (B):
+    - core:
+      elements: [16, 32]
+    - accelerated:
+      elements: [64]
+    - supported:
+      elements: "( 2^i for i in [4..24] )"
   - KappaApproximate:
-    - SqrtFast
-    - SinFast
-    - ExpFast
+    - "SqrtFast"
+    - "SinFast"
+    - "ExpFast"

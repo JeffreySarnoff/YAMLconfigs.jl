@@ -23,10 +23,11 @@ SqrtFast:
     - interval: "( [>=(-Inf), <=(Inf)] )" # using inequalities at the bounds works for all formats
       kappa: 1
   Projections:
-    RoundingModes:
-      ["NearestTiesToEven", "TowardZero"]
-    SaturationModes: 
-      ["SatFinite"]
+    Rounding:
+      - "NearestTiesToEven"
+      - "TowardZero"
+    Saturation: 
+      - "SatFinite"
   Notes: |
     Exhaustive testing performed for all supported formats.
     Reference: "https://implementer.site/P3109/Kappas/SqrtFast.c"
@@ -41,9 +42,14 @@ SinFast:
     - interval: "( [>=(π), <=(Inf)] )"
       kappa: 2
   Projections:
-    RoundingModes:
-      ["NearestTiesToEven", "TowardZero", ["StochasticA": "( Bits = 16 )"]]
-    SaturationModes: ["OvfInf", "SatFinite"]
+    Rounding:
+      - "NearestTiesToEven"
+      - "TowardZero"
+      - "StochasticA":
+        bits: 16
+    Saturation:
+      - "OvfInf"
+      - "SatFinite"
   Notes: | 
     CORDIC algorithm used with adaptive iteration count based on input range.
   Verification:
@@ -60,45 +66,51 @@ SinFast:
 ExpFast: # two approximations, signature dependent
   # first approximation signature
   - Approximates: "Exp{Binary8p3se, Binary8p3se, ρ}"
-    With:
-      - "Round{ρ} in {ToOdd, StochasticA}"
-      - "Sat{ρ} in {SatPropagate}"
-    Kappa:
-      - interval: "( [>=(-Inf), <(-10)] )"
-        kappa: 2
-      - interval: "( [>=(-10), <(0)] )"
-        kappa: 1
-      - interval: "( [>=(0), <=(1)] )"
-        kappa: 0
-      - interval: "( [>(1), <=(12)] )"
-        kappa: 1
-      - interval: "( [>(12), <=(Inf)] )"
-        kappa: 2
-    Verification:
-      method: "statistical"
-      note: "10 million random samples per range, all special cases verified"
-      reference:
-        uri: "https://implementer.site/P3109/Kappas/ExpFast.jl"
+  - Kappa:
+    - interval: "( [>=(-Inf), <(-10)] )"
+      kappa: 2
+    - interval: "( [>=(-10), <(0)] )"
+      kappa: 1
+    - interval: "( [>=(0), <=(1)] )"
+      kappa: 0
+    - interval: "( [>(1), <=(12)] )"
+      kappa: 1
+    - interval: "( [>(12), <=(Inf)] )"
+      kappa: 2
+  - Projections:
+    Rounding:
+      - "ToOdd"
+      - "StochasticA":
+        bits: 16
+    Saturation:
+      - "SatPropagate"
+  - Verification:
+    method: "statistical"
+    note: "10 million random samples per range, all special cases verified"
+    reference:
+      uri: "https://implementer.site/P3109/Kappas/ExpFast.jl"
   # second approximation signature
   - Approximates: "Exp{Binary8p3se, Binary8p4se, ρ}"
-    With:
-      - "( Round(ρ) in {ToOdd, StochasticA} )"
-      - StochasticA:
-          bits: 16
-      - "( Sat{ρ} in {SatPropagate} )"
-    Kappa:
-      - interval: "( [>=(-Inf), <(-11)] )"
-        kappa: 2
-      - interval: "( [>=(-11), <(-1)] )"
-        kappa: 1
-      - interval: "( [>=(-1), <=(1)] )"
-        kappa: 0
-      - interval: "( [>(1), <(13)] )"
-        kappa: 1
-      - interval: "( [>=(13), <=(Inf)] )"
-        kappa: 2
-    Verification:
-      method: "statistical"
-      note: "10 million random samples per range, all special cases verified"
-      reference:
-        uri: "https://implementer.site/P3109/Kappas/ExpFast.jl"
+  - Kappa:
+    - interval: "( [>=(-Inf), <(-11)] )"
+      kappa: 2
+    - interval: "( [>=(-11), <(-1)] )"
+      kappa: 1
+    - interval: "( [>=(-1), <=(1)] )"
+      kappa: 0
+    - interval: "( [>(1), <(13)] )"
+      kappa: 1
+    - interval: "( [>=(13), <=(Inf)] )"
+      kappa: 2
+  - Projections:
+    Rounding:
+      - "ToOdd"
+      - "StochasticA":
+        bits: 16
+    Saturation:
+      - "SatPropagate"
+  - Verification:
+    method: "statistical"
+    note: "10 million random samples per range, all special cases verified"
+    reference:
+      uri: "https://implementer.site/P3109/Kappas/ExpFast.jl"

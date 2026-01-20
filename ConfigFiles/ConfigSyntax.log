@@ -414,7 +414,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
 Overfull \hbox (80.24876pt too wide) in paragraph at lines 141--141
-[]\T1/lmtt/m/n/10 "( ([ Binary6p${i}sf for i in [1, 3, 4] ], [ Binary8p${k}se for k in [2..4] ]) )"[] 
+[]\T1/lmtt/m/n/10 "( ([ Binary6p$(i)sf for i in [1, 3, 4] ], [ Binary8p${k}se for k in [2..4] ]) )"[] 
  []
 
 

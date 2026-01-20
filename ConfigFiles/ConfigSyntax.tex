@@ -131,13 +131,13 @@ String interpolation is done with
 $\mapsto$\begin{verbatim}[ Binary4p1sf, Binary4p2sf, Binary4p3sf ]\end{verbatim}
 
 Multiple substitutions may be done within a single item
-\begin{verbatim}"( [ (Binary4p${i}s${j} for i in [1..2] for j in ["f", "e"]) ] )"\end{verbatim}
+\begin{verbatim}"( [ (Binary4p$(i)s$(j) for i in [1..2] for j in ["f", "e"]) ] )"\end{verbatim}
 $\mapsto$
 \begin{verbatim}[ Binary4p1sf, Binary4p2sf, Binary4p1se, Binary4p2se ]\end{verbatim}
 
 Two generated lists are concatenated when they are wrapped in parenthesis
 \begin{verbatim}
-"( ([ Binary6p${i}sf for i in [1, 3, 4] ], [ Binary8p${k}se for k in [2..4] ]) )"
+"( ([ Binary6p$(i)sf for i in [1, 3, 4] ], [ Binary8p${k}se for k in [2..4] ]) )"
 \end{verbatim}
 $\mapsto$
 \begin{verbatim}[ Binary6p1sf, Binary6p3sf, Binary6p4sf, Binary8p2se, Binary8p3se, Binary8p4se ]\end{verbatim}.
